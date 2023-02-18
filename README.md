@@ -16,3 +16,6 @@ The database schema is under the scripts folder. After installing MySQL, run the
 To run the service run the following from the source directory:
 - `dotnet run`
 That will start a local web server that you can curl against (or use the browser)
+
+Contributors:
+Athanasius Isaac
