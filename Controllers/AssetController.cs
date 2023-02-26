@@ -9,20 +9,22 @@ namespace Psaltos.Controllers;
 public class AssetController : ControllerBase
 {
     private readonly ILogger<AssetController> _logger;
-    private readonly DapperContext _dapperContext;
+    private readonly IDapperContext _dapperContext;
 
-    public AssetController(ILogger<AssetController> logger, DapperContext dapperContext)
+    public AssetController(ILogger<AssetController> logger, IDapperContext dapperContext)
     {
         _logger = logger;
         _dapperContext = dapperContext;
     }
 
     [HttpGet(Name = "GetAssets")]
-    public IEnumerable<Asset> Get()
+    public IEnumerable<Asset> Get([FromQuery(Name = "tagId")] int[] tags)
     {
         using (var connection = _dapperContext.GetConnection())
         {
-            var assets = connection.Query<Asset>("SELECT * FROM Assets");
+            var assets = connection.Query<Asset>(@"SELECT * FROM Assets
+                    JOIN AssetTags on Assets.Id = AssetTags.AssetId
+                    AND AssetTags.TagId IN @tags", new { tags });
             return assets;
         }
     }
