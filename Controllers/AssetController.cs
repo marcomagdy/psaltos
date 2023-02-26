@@ -66,7 +66,7 @@ public class AssetController : ControllerBase
         return Ok();
     }
 
-        [HttpDelete("{assetId:int}")]
+    [HttpDelete("{assetId:int}")]
     public async Task<IActionResult> Delete(int assetId)
     {
         _logger.LogInformation("Delete: assetId=" + assetId);
@@ -75,7 +75,7 @@ public class AssetController : ControllerBase
             var sqlStatement = @"
             DELETE FROM Assets
             WHERE AssetId = @assetId";
-            await connection.ExecuteAsync(sqlStatement, new {assetId = assetId});
+            await connection.ExecuteAsync(sqlStatement, assetId);
         }
         return Ok();
     }

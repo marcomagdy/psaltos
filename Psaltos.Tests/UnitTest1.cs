@@ -1,5 +1,6 @@
 namespace Psaltos.Tests;
 
+using Psaltos.Controllers;
 public class Tests
 {
     [SetUp]
