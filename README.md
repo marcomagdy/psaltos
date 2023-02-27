@@ -18,4 +18,4 @@ To run the service run the following from the source directory:
 That will start a local web server that you can curl against (or use the browser)
 
 Contributors:
-Athanasius Isaac
+Athanasius Isaac, Nardin Eshak
