@@ -25,4 +25,4 @@ Example curls:
 - delete - `curl -X DELETE http://localhost:5213/asset/2`
 
 Contributors:
-Athanasius Isaac, Nardin Eshak
+Athanasius Isaac, Nardin Eshak.
