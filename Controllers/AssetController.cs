@@ -66,7 +66,7 @@ public class AssetController : ControllerBase
         return Ok();
     }
 
-        [HttpDelete("{assetId:int}")]
+    [HttpDelete("{assetId:int}")]
     public async Task<IActionResult> Delete(int assetId)
     {
         _logger.LogInformation("Delete: assetId=" + assetId);
@@ -76,6 +76,26 @@ public class AssetController : ControllerBase
             DELETE FROM Assets
             WHERE AssetId = @assetId";
             await connection.ExecuteAsync(sqlStatement, new {assetId = assetId});
+        }
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("{assetId}/tag")]
+    public async Task<IActionResult> TagAsset(int assetId, [FromBody] int tagId)
+    {
+        // TODO: add protection to verify that these are valid ids
+        _logger.LogInformation("TagAsset: assetId=" + assetId);
+
+        using (var connection = _dapperContext.GetConnection())
+        {
+            var sqlStatement = @"
+            INSERT INTO AssetTags 
+                (AssetId,
+                TagId)
+            VALUES (@AssetId,
+                @TagId)";
+            await connection.ExecuteAsync(sqlStatement, new {assetId = assetId, tagId = tagId});
         }
         return Ok();
     }
