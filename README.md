@@ -17,6 +17,7 @@ To run the service run the following from the source directory:
 - `dotnet run`
 That will start a local web server that you can curl against (or use the browser)
 
+
 Example curls:
 - get - `curl -X GET http://localhost:5213/asset`
 - create - `curl -X POST http://localhost:5213/asset -H "Content-Type: application/json" -d '{"TypeId": 2, "Location": "here/hymn1", "EnglishName": "enthoten ze", "CopticName": "ⲛⲓⲣⲱⲙⲓ"}'`
@@ -26,4 +27,4 @@ Example curls:
 - tag an asset (tags asset 1 with tag 2) - `curl -X POST http://localhost:5213/asset/1/tag -H "Content-Type: application/json" -d '2'`
 
 Contributors:
-Athanasius Isaac, Nardin Eshak, Helina Azer
+Athanasius Isaac, Nardin Eshak, Helina Azer, Geovanny Henein
