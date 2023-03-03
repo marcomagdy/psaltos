@@ -27,19 +27,6 @@ public class AssetController : ControllerBase
         }
     }
 
-
-    [HttpPost]
-    public IEnumerable<Asset> Add(Asset asset)
-    {
-        using (var connection = _dapperContext.GetConnection())
-        {
-            var query = string.Format("INSERT INTO Assets VALUES ({0}, {1}, '{2}', '{3}', '{4}');", asset.AssetId, asset.TypeId, asset.Location, asset.EnglishName, asset.CopticName);
-
-            var assets = connection.Query<Asset>(query);
-            return assets;
-        }
-
-
     [HttpPost(Name = "CreateAsset")]
     public async Task<IActionResult> Create([FromBody] Asset asset)
     {
