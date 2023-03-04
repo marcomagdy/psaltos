@@ -1,11 +1,11 @@
+﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using Dapper;
 using Models;
 
-namespace Psaltos.Controllers;
+namespace psaltos.Controllers;
 
 [ApiController]
-[Route("asset")]
+[Route("[controller]")]
 public class AssetController : ControllerBase
 {
     private readonly ILogger<AssetController> _logger;
@@ -17,7 +17,7 @@ public class AssetController : ControllerBase
         _dapperContext = dapperContext;
     }
 
-    [HttpGet(Name = "GetAssets")]
+    [HttpGet]
     public IEnumerable<Asset> Get()
     {
         using (var connection = _dapperContext.GetConnection())
@@ -26,7 +26,6 @@ public class AssetController : ControllerBase
             return assets;
         }
     }
-
 
     [HttpPost(Name = "CreateAsset")]
     public async Task<IActionResult> Create([FromBody] Asset asset)
@@ -66,7 +65,7 @@ public class AssetController : ControllerBase
         return Ok();
     }
 
-        [HttpDelete("{assetId:int}")]
+    [HttpDelete("{assetId:int}")]
     public async Task<IActionResult> Delete(int assetId)
     {
         _logger.LogInformation("Delete: assetId=" + assetId);
@@ -76,6 +75,26 @@ public class AssetController : ControllerBase
             DELETE FROM Assets
             WHERE AssetId = @assetId";
             await connection.ExecuteAsync(sqlStatement, new {assetId = assetId});
+        }
+        return Ok();
+    }
+
+    [HttpPost]
+    [Route("{assetId}/tag")]
+    public async Task<IActionResult> TagAsset(int assetId, [FromBody] int tagId)
+    {
+        // TODO: add protection to verify that these are valid ids
+        _logger.LogInformation("TagAsset: assetId=" + assetId);
+
+        using (var connection = _dapperContext.GetConnection())
+        {
+            var sqlStatement = @"
+            INSERT INTO AssetTags 
+                (AssetId,
+                TagId)
+            VALUES (@AssetId,
+                @TagId)";
+            await connection.ExecuteAsync(sqlStatement, new {assetId = assetId, tagId = tagId});
         }
         return Ok();
     }
