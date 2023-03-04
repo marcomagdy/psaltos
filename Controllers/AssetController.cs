@@ -1,11 +1,11 @@
+﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using Dapper;
 using Models;
 
-namespace Psaltos.Controllers;
+namespace psaltos.Controllers;
 
 [ApiController]
-[Route("asset")]
+[Route("[controller]")]
 public class AssetController : ControllerBase
 {
     private readonly ILogger<AssetController> _logger;
@@ -17,7 +17,7 @@ public class AssetController : ControllerBase
         _dapperContext = dapperContext;
     }
 
-    [HttpGet(Name = "GetAssets")]
+    [HttpGet]
     public IEnumerable<Asset> Get()
     {
         using (var connection = _dapperContext.GetConnection())
@@ -26,7 +26,6 @@ public class AssetController : ControllerBase
             return assets;
         }
     }
-
 
     [HttpPost(Name = "CreateAsset")]
     public async Task<IActionResult> Create([FromBody] Asset asset)
