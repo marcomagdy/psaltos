@@ -2,6 +2,7 @@ import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import FileUploader from "./components/FileUploader";
 import { Home } from "./components/Home";
+import { AudioPlayer } from "./components/AudioPlayer";
 
 const AppRoutes = [
   {
@@ -19,6 +20,10 @@ const AppRoutes = [
   {
     path: '/add-data',
     element: <FileUploader />
+  },
+  {
+    path: '/audio-player',
+    element: <AudioPlayer />
   }
 ];
 
