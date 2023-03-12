@@ -1,61 +1,52 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Header, Table } from 'semantic-ui-react'
+import  PsaltosLoader  from './PsaltosLoader';
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+const FetchData = () => {
+  const [hymns, setHymns] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
-  constructor(props) {
-    super(props);
-    this.state = { hymns: [], loading: true };
-  }
+  useEffect(() => {
+    populateHymnsData();
+  }, [isLoading, hymns]);
 
-  componentDidMount() {
-    this.populateHymnsData();
-  }
-
-  static renderHymnsTable(hymns) {
-    return (
-      <table className="table table-striped" aria-labelledby="tableLabel">
-        <thead>
-          <tr>
-            <th>AssetId</th>
-            <th>TypeId</th>
-            <th>Location</th>
-            <th>English Name</th>
-            <th>Coptic Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {hymns.map(hymn =>
-            <tr key={hymn.assetId}>
-              <td>{hymn.assetId}</td>
-              <td>{hymn.typeId}</td>
-              <td>{hymn.location}</td>
-              <td>{hymn.englishName}</td>
-              <td>{hymn.copticName}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
-  }
-
-  render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderHymnsTable(this.state.hymns);
-
-    return (
-      <div>
-        <h1 id="tableLabel">Hymns Table</h1>
-        <p>This is the table stored in the database.</p>
-        {contents}
-      </div>
-    );
-  }
-
-  async populateHymnsData() {
+  const populateHymnsData = async() => {
     const response = await fetch('asset');
     const data = await response.json();
-    this.setState({ hymns: data, loading: false });
+    setHymns(data);
+    setLoading(false);
   }
+
+  return (
+    <div>
+      <Header as='h2' textAlign='center'>Assets Table</Header>
+      {
+        isLoading ? 
+        <PsaltosLoader /> :
+        <Table celled padded>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>TypeId</Table.HeaderCell>
+              <Table.HeaderCell>Location</Table.HeaderCell>
+              <Table.HeaderCell>English Name</Table.HeaderCell>
+              <Table.HeaderCell>Coptic Name</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {hymns.map(hymn =>
+              <Table.Row key={hymn.assetId}>
+                <Table.Cell>{hymn.typeId}</Table.Cell>
+                <Table.Cell><a href={hymn.location}>{hymn.englishName}</a></Table.Cell>
+                <Table.Cell>{hymn.englishName}</Table.Cell>
+                <Table.Cell>{hymn.copticName}</Table.Cell>
+              </Table.Row>
+            )}
+          </Table.Body>
+        </Table>
+      }
+    </div>
+  );
+
 }
+
+export default FetchData;

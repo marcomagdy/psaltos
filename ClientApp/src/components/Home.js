@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Header, Segment } from 'semantic-ui-react'
 
-
-export class Home extends Component {
-  static displayName = Home.name;
-
-  render() {
-    return (
-      <div>
-        <p>Welcome to the psaltos uploader, please click in the navigation to fetch and add data.</p>
-      </div>
-    );
-  }
+const Home = () => {
+  return (
+    <Segment>
+      <Header>Welcome to the psaltos uploader, please click in the navigation to fetch and add data.</Header>
+    </Segment>
+  );
 }
+
+export default Home;
