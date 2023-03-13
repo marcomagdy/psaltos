@@ -3,10 +3,10 @@ import { useState } from 'react';
 import {Input, Image, Button, Form} from 'semantic-ui-react'
 
 AWS.config.update({
-  accessKeyId: '<ACCESS-KEY-ID>',
-  secretAccessKey: '<SECRET-ACCESS-KEY>',
-  region: 'us-east-1',
-  signatureVersion: 'v4',
+  accessKeyId: 'AKIAWKMQZAIBQUYJ67HR',
+  secretAccessKey: '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',
+  region: "us-east-1",
+  signatureVersion: "v4",
 });
 
 const FileUploader = () =>  {
