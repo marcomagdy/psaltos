@@ -6,11 +6,9 @@ import {GrForwardTen} from "react-icons/gr";
 import {GrBackTen} from "react-icons/gr";
 import { AiFillPauseCircle } from "react-icons/ai";
 import { AiFillPlayCircle } from "react-icons/ai";
-//import epouro from "./epouro.mp3";
-import amen from "./amen.mp3";
 
 
-const AudioPlayer = () => {
+const AudioPlayer = ({src}) => {
   //state
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -78,7 +76,7 @@ const AudioPlayer = () => {
 
   return (
     <div className="audioPlayer">
-      <audio ref={audioPlayer} src={amen} preload="metadata" />
+      <audio ref={audioPlayer} src={src} preload="metadata" />
 
       {/* go back 10 seconds */}
       <Button className="forwardBackwards" onClick={backTen}>

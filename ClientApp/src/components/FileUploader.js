@@ -3,8 +3,8 @@ import { useState } from 'react';
 import {Input, Image, Button, Form} from 'semantic-ui-react'
 
 AWS.config.update({
-  accessKeyId: "<ACCESS-KEY-ID>",
-  secretAccessKey: "<SECRET-ACCESS-KEY>",
+  accessKeyId: '',
+  secretAccessKey: '',
   region: "us-east-1",
   signatureVersion: "v4",
 });
