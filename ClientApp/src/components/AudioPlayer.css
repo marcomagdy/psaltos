@@ -58,7 +58,7 @@
     background: var(--bar-bg);
     border-radius: 10px;
     position: relative;
-    width: 100%;
+    width: 1000px;
     height: 11px;
     outline: none;
 }

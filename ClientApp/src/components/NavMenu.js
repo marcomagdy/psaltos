@@ -61,9 +61,14 @@ export class NavMenu extends Component {
                   Add data
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/audio-player">
                   Audio Player
+                </NavLink>
+              </NavItem> */}
+              <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/audio">
+                  Audio
                 </NavLink>
               </NavItem>
             </ul>
