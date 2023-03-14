@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { Header, Table } from 'semantic-ui-react'
+import axios from 'axios';
 import  PsaltosLoader  from './PsaltosLoader';
 
 const FetchData = () => {
-  const [hymns, setHymns] = useState([]);
+  const [hymns, setHymns] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     populateHymnsData();
   }, [isLoading, hymns]);
 
-  const populateHymnsData = async() => {
-    const response = await fetch('asset');
-    const data = await response.json();
-    setHymns(data);
-    setLoading(false);
+  const populateHymnsData = async () => {
+    await axios
+      .get("https://localhost:7226/asset", function (req, res) {
+          res.header("Access-Control-Allow-Origin", "*");
+      })
+      .then((response) =>  {
+        setHymns(response.data); 
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
     <div>
       <Header as='h2' textAlign='center'>Assets Table</Header>
       {
-        isLoading ? 
+        (isLoading && !hymns) ? 
         <PsaltosLoader /> :
         <Table celled padded>
           <Table.Header>

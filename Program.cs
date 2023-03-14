@@ -1,9 +1,18 @@
 var builder = WebApplication.CreateBuilder(args);
-
+var _policyName = "CorsPolicy";
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddCors(opt =>
+    {
+        opt.AddPolicy(name: _policyName, builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -16,6 +25,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors(_policyName);
 
 
 app.MapControllerRoute(

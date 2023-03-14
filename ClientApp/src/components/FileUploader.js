@@ -1,10 +1,11 @@
-import AWS from 'aws-sdk';
 import { useState } from 'react';
-import {Input, Image, Button, Form} from 'semantic-ui-react'
+import { Input, Image, Button, Form } from 'semantic-ui-react'
+import AWS from 'aws-sdk';
+import axios from 'axios';
 
 AWS.config.update({
-  accessKeyId: '<ACCESS-KEY-ID>',
-  secretAccessKey: '<SECRET-ACCESS-KEY>',
+  accessKeyId: 'AKIAWKMQZAIBQUYJ67HR',
+  secretAccessKey: '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',
   region: 'us-east-1',
   signatureVersion: 'v4',
 });
@@ -17,6 +18,8 @@ const FileUploader = () =>  {
     const [englishName, setEnglishName] = useState(null);
     const [copticName, setCopticName] = useState(null);
     const [isAddedToDb, setAddedToDb] = useState(false);
+    const [isError, setError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
   
     const handleFileSelect = (e) => {
       setFile(e.target.files[0]);
@@ -36,9 +39,12 @@ const FileUploader = () =>  {
 
     const upload = async () => {
         if (!file) {
+          setError(true);
+          setErrorMessage("Please choose a file to upload.");
           return;
         }
 
+        // S3
         const params = { 
           Bucket: 'test-bucket-hymns', 
           Key: `${Date.now()}.${file.name}`, 
@@ -49,22 +55,28 @@ const FileUploader = () =>  {
         console.log('uploading to s3', Location);
 
         const asset = { 
-          AssetId: 0,
           TypeId: typeId, 
           Location: Location,
           EnglishName: englishName,
           CopticName: copticName
         };
-        
-        const response = await fetch('asset', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(asset)
-        });
-        console.log(JSON.stringify({ asset: asset }));
-        await response.json().then(setAddedToDb(true));
 
-        setFile(null);
+        await axios.post("https://localhost:7226/asset",  asset)
+        .then((response) =>  {
+            console.log(response);
+            if (response.status !== 200) {
+              setError(true);
+              setErrorMessage("We are able to upload to our database at this time.");
+            }
+            else {
+              setAddedToDb(true);
+            }
+          })
+          .catch((err) => console.log(err));
+       
+
+        setFileUrl(null);
+        setAddedToDb(false);
     }
   
     return (
