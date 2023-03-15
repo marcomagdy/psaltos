@@ -81,20 +81,25 @@ public class AssetController : ControllerBase
 
     [HttpPost]
     [Route("{assetId}/tag")]
-    public async Task<IActionResult> TagAsset(int assetId, [FromBody] int tagId)
+    public async Task<IActionResult> TagAsset(int assetId, [FromBody] int[] tagIds)
     {
         // TODO: add protection to verify that these are valid ids
         _logger.LogInformation("TagAsset: assetId=" + assetId);
+        if (tagIds == null || tagIds.Length == 0) {
+            return new BadRequestResult();
+        }
 
         using (var connection = _dapperContext.GetConnection())
         {
             var sqlStatement = @"
             INSERT INTO AssetTags 
                 (AssetId,
-                TagId)
-            VALUES (@AssetId,
-                @TagId)";
-            await connection.ExecuteAsync(sqlStatement, new {assetId = assetId, tagId = tagId});
+                TagId) VALUES";
+            foreach (int tag in tagIds) {
+                sqlStatement += ("(" + assetId + ", " + tag + "),");
+            }
+            _logger.LogInformation(sqlStatement);
+            await connection.ExecuteAsync(sqlStatement.Substring(0, sqlStatement.Length - 1));
         }
         return Ok();
     }
