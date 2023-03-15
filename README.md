@@ -24,12 +24,12 @@ To run the front end, use the following from the ClientApp directory:
 - `npm run start`
 
 Example curls:
-- get - `curl -X GET http://localhost:5213/asset`
-- create - `curl -X POST http://localhost:5213/asset -H "Content-Type: application/json" -d '{"TypeId": 2, "Location": "here/hymn1", "EnglishName": "enthoten ze", "CopticName": "ⲛⲓⲣⲱⲙⲓ"}'`
-- update - `curl -X PUT http://localhost:5213/asset -H "Content-Type: application/json" -d '{"TypeId": 2, "Location": "here/hymn2", "EnglishName": "niromi", "CopticName": "ⲛⲓⲣⲱⲙⲓ", "AssetId": 3}'`
+- get - `curl -k -L -X GET http://localhost:5279/asset`
+- create - `curl -k -L -X POST http://localhost:5279/asset -H "Content-Type: application/json" -d '{"TypeId": 2, "Location": "here/hymn1", "EnglishName": "enthoten ze", "CopticName": "ⲛⲓⲣⲱⲙⲓ"}'`
+- update - `curl -k -L -X PUT http://localhost:5279/asset -H "Content-Type: application/json" -d '{"TypeId": 2, "Location": "here/hymn2", "EnglishName": "niromi", "CopticName": "ⲛⲓⲣⲱⲙⲓ", "AssetId": 3}'`
     Note: you must supply AssetId for update
-- delete - `curl -X DELETE http://localhost:5213/asset/2`
-- tag an asset (tags asset 1 with tag 2) - `curl -X POST http://localhost:5213/asset/1/tag -H "Content-Type: application/json" -d '2'`
+- delete - `curl -k -L -X DELETE http://localhost:5279/asset/2`
+- tag an asset (tags asset 1 with 2 tags) - `curl -X POST http://localhost:5279/asset/1/tag -H "Content-Type: application/json" -d '[1,2]'`
 
 Contributors:
-Athanasius Isaac, Nardin Eshak, Helina Azer, Geovanny Henein, Verena Girgis
+Athanasius Isaac, Nardin Eshak, Helina Azer, Verena Girgis
