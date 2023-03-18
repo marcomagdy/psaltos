@@ -1,5 +1,5 @@
 import FetchData from "./components/FetchData";
-import FileUploader from "./components/FileUploader";
+import AddData from "./AddData";
 import Home from "./components/Home";
 
 const AppRoutes = [
@@ -13,7 +13,7 @@ const AppRoutes = [
   },
   {
     path: '/add-data',
-    element: <FileUploader />
+    element: <AddData/>
   }
 ];
 

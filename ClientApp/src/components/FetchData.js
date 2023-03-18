@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Header, Table } from 'semantic-ui-react'
-import axios from 'axios';
 import  PsaltosLoader  from './PsaltosLoader';
+import { PopulateHymnsData } from '../BackendCalls';
 
 const FetchData = () => {
   const [hymns, setHymns] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    populateHymnsData();
-  }, [isLoading, hymns]);
-
-  const populateHymnsData = async () => {
-    await axios
-      .get("https://localhost:7226/asset", function (req, res) {
-          res.header("Access-Control-Allow-Origin", "*");
-      })
-      .then((response) =>  {
-        setHymns(response.data); 
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  }
+    PopulateHymnsData(setHymns, setLoading);
+  }, [isLoading, setHymns]);
 
   return (
     <div>
