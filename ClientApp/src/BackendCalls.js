@@ -2,8 +2,8 @@ import axios from 'axios';
 import AWS from 'aws-sdk';
 
 AWS.config.update({
-  accessKeyId: "AKIAWKMQZAIBQUYJ67HR",
-  secretAccessKey: "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",
+  accessKeyId: "<ACCESS-KEY-ID>",
+  secretAccessKey: "<SECRET-ACCESS-KEY>",
   region: 'us-east-1',
   signatureVersion: 'v4',
 });
