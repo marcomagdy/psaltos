@@ -1,3 +1,5 @@
 obj/
 bin/
 node_modules
+.vscode
+

@@ -38,7 +38,6 @@ const FileUploader = () =>  {
     const handleCopticName = (e) => {
       setCopticName(e.target.value);
     }
-  
     return (
       <div>
           <Form columns={3}>

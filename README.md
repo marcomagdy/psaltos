@@ -32,4 +32,4 @@ Example curls:
 - tag an asset (tags asset 1 with 2 tags) - `curl -X POST http://localhost:5279/asset/1/tag -H "Content-Type: application/json" -d '[1,2]'`
 
 Contributors:
-Athanasius Isaac, Nardin Eshak, Helina Azer, Geovanny Henein, Verena Girgis
+Athanasius Isaac, Nardin Eshak, Helina Azer, Verena Girgis
