@@ -1,6 +1,5 @@
 import axios from 'axios';
 import AWS from 'aws-sdk';
-import { useState } from 'react';
 
 AWS.config.update({
   accessKeyId: "AKIAWKMQZAIBQUYJ67HR",
@@ -11,19 +10,18 @@ AWS.config.update({
 
 export const PopulateHymnsData = async (setHymns, setLoading) => {
     await axios
-      .get("https://localhost:7226/asset", function (req, res) {
-          res.header("Access-Control-Allow-Origin", "*");
-      })
-      .then((response) =>  {
+    .get("https://localhost:7226/asset", function (req, res) {
+        res.header("Access-Control-Allow-Origin", "*");
+    })
+    .then((response) =>  {
         setHymns(response.data); 
         setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  }
+    })
+    .catch((err) => console.log(err));
+}
 
 export const UploadAsset = async (setError, setErrorMessage, setAddedToDb, typeId, englishName, copticName, file, selectedTags, setWarning) => {
     const s3 = new AWS.S3();
-    const [hymns, setHymns] = useState([]);
     setError(false);
     setErrorMessage(null);
     if (!file) {
@@ -71,10 +69,20 @@ export const UploadAsset = async (setError, setErrorMessage, setAddedToDb, typeI
           setErrorMessage("We are able to upload to our database at this time.");
       });
 
-      PopulateHymnsData(setHymns);
-      const newAssetId = hymns[hymns.length - 1].asstId;
+      var hymns = null;
+      await axios
+      .get("https://localhost:7226/asset", function (req, res) {
+          res.header("Access-Control-Allow-Origin", "*");
+      })
+      .then((response) =>  {
+        hymns = response.data;
+        console.log(hymns);
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+      const newAssetId = hymns[hymns.length - 1].assetId;
 
-    await axios.post("https://localhost:7226/" + newAssetId + "/tag",  selectedTags)
+    await axios.post("https://localhost:7226/asset/" + newAssetId + "/tag",  selectedTags)
     .then((response) =>  {
         console.log(response);
         if (response.status !== 200) {

@@ -72,19 +72,24 @@ const FileUploader = () =>  {
         
         <div style={{ marginTop: '10px' }}>
           <Button disabled={!file}onClick={() => UploadAsset(setError, setErrorMessage, setAddedToDb, typeId, englishName, copticName, file, selectedTags, setWarning)}>Upload</Button>
-          {(!isError || !isAddedToDb) && 
+          {(isError || isAddedToDb) && 
           <Icon color='green'  name='check circle'></Icon>
           }
         </div>
 
         <Message hidden={!isError} negative>
-          <Icon name='exclamation circle' loading />
-          <Message.Header>An Error Has Occured</Message.Header>
+          <Message.Header>
+            <Icon name='exclamation circle' />
+            An Error Has Occured
+          </Message.Header>
           <Message.Content>{errorMessage}</Message.Content>
         </Message>
         <Message hidden={!isWarning} warning>
-          <Icon name='warning sign' loading />
-          <Message.Header>An Error Has Occured</Message.Header>
+          
+          <Message.Header>
+            <Icon name='warning sign'/>
+            Your Tags are not Uploaded
+          </Message.Header>
           <Message.Content>{errorMessage}</Message.Content>
         </Message>
       </div>

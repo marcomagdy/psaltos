@@ -92,7 +92,7 @@ public class AssetController : ControllerBase
         using (var connection = _dapperContext.GetConnection())
         {
             var sqlStatement = @"
-            INSERT INTO AssetTags 
+            INSERT INTO AssetToTag 
                 (AssetId,
                 TagId) VALUES";
             foreach (int tag in tagIds) {
