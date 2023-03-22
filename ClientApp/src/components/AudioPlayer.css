@@ -1,7 +1,12 @@
 .audioPlayer {
     display: flex;
     align-items: center;
-    width: 700px;
+}
+
+.playBack {
+    border: none;
+    margin-left: 15px;
+    margin-right: 20px;
 }
 
 .forwardBackwards {
@@ -10,41 +15,23 @@
     display: flex;
     align-items: center;
     font-family: monospace;
-    font-size: 28px;
     cursor: pointer;
 }
-
-/* .forwardBackwards:hover {
-    color: pink;
-} */
 
 .playPause {
     background: none;
     border: none;
-    width: 75px;
-    height: 75px;
     font-size: 50px;
     display:flex;
     justify-content: center;
     position: relative;
-    left: 1px;
+    /* left: 1px; */
     align-items: center;
 }
 
 .currentTime,
 .duration {
   font-family: Arial;
-  font-size: 16px; 
-}
-
-.currentTime {
-    margin-left: 20px;
-    margin-right: 10px;
-}
-
-.duration {
-    margin-right: 20px;
-    margin-left: 10px;
 }
 
 .progressBar {
@@ -53,13 +40,10 @@
     --seek-before-color: #4c4947;
     --knob: black;
     --selectedKnob: #393a3a;
-
     appearance: none;
     background: var(--bar-bg);
     border-radius: 10px;
     position: relative;
-    width: 1000px;
-    height: 11px;
     outline: none;
 }
 
@@ -68,8 +52,6 @@
     background: var(--bar-bg);
     border-radius: 10px;
     position: relative;
-    width: 100%;
-    height: 11px;
     outline: none;
 }
 
@@ -79,8 +61,6 @@
     background: var(--bar-bg);
     border-radius: 10px;
     position: relative;
-    width: 100%;
-    height: 11px;
     outline: none;
 }
 
@@ -151,3 +131,805 @@
     transform: scale(1.2);
     background: var(--selectedKnob);
 }  
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 320px) and (max-width:380px) {
+    .playPause {
+        width: 35px;
+        height: 35px;
+    }
+
+    .forwardBackwards {
+        font-size: 15px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 10px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+
+    .duration {
+        margin-right: 3px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 170px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 170px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 1000px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 381px) and (max-width:440px) {
+    .playPause {
+        width: 35px;
+        height: 35px;
+    }
+
+    .forwardBackwards {
+        font-size: 15px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 10px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+
+    .duration {
+        margin-right: 3px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 200px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 200px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 200px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 441px) and (max-width:500px) {
+    .playPause {
+        width: 35px;
+        height: 35px;
+    }
+
+    .forwardBackwards {
+        font-size: 15px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 12px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+
+    .duration {
+        margin-right: 3px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 260px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 260px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 260px;
+        height: 11px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 501px) and (max-width:560px) {
+    .playPause {
+        width: 40px;
+        height: 40px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 12px; 
+    }
+
+    .currentTime {
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 10px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 300px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 300px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 300px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 561px) and (max-width:620px) {
+    .playPause {
+        width: 40px;
+        height: 40px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 13px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+
+    .duration {
+        margin-right: 3px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 350px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 350px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 350px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 621px) and (max-width:680px) {
+    .playPause {
+        width: 40px;
+        height: 40px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 10px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 390px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 390px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 390px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 681px) and (max-width:740px) {
+    .playPause {
+        width: 40px;
+        height: 40px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 12px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 410px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 410px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 410px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 741px) and (max-width:800px) {
+    .playPause {
+        width: 40px;
+        height: 40px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 12px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 3px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 445px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 445px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 445px;
+        height: 11px;
+    }
+}
+
+/*--------------------------------------------------------------------------------------*/
+@media (min-width: 801px) and (max-width:860px) {
+    .playPause {
+        width: 45px;
+        height: 45px;
+    }
+
+    .forwardBackwards {
+        font-size: 23px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 12px; 
+    }
+
+    .currentTime {
+        margin-left: 10px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 10px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 500px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 500px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 500px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 861px) and (max-width:920px) {
+    .playPause {
+        width: 45px;
+        height: 45px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 14px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 540px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 540px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 540px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 921px) and (max-width:980px) {
+    .playPause {
+        width: 45px;
+        height: 45px;
+    }
+
+    .forwardBackwards {
+        font-size: 20px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 14px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 580px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 580px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 580px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 981px) and (max-width:1040px) {
+    .playPause {
+        width: 50px;
+        height: 50px;
+    }
+
+    .forwardBackwards {
+        font-size: 25px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 15px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 610px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 610px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 610px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 1041px) and (max-width:1100px) {
+    .playPause {
+        width: 60px;
+        height: 60px;
+    }
+
+    .forwardBackwards {
+        font-size: 25px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 15px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 680px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 680px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 680px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 1101px) and (max-width:1160px) {
+    .playPause {
+        width: 60px;
+        height: 60px;
+    }
+
+    .forwardBackwards {
+        font-size: 28px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 15px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 730px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 730px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 730px;
+        height: 11px;
+    }
+}
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 1161px) and (max-width:1223px) {
+    .playPause {
+        width: 45px;
+        height: 45px;
+    }
+
+    .forwardBackwards {
+        font-size: 24px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 16px; 
+    }
+
+    .currentTime {
+        margin-left: 7px;
+        margin-right: 5px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 7px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 800px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 800px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 800px;
+        height: 11px;
+    }
+}
+  
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 1224px) and (max-width: 1400px){
+    .playPause {
+        width: 75px;
+        height: 75px;
+    }
+
+    .forwardBackwards {
+        font-size: 28px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 16px; 
+    }
+
+    .currentTime {
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+    .duration {
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 900px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 900px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 900px;
+        height: 11px;
+    }
+}
+
+
+/* --------------------------------------------------------------------------------- */
+@media (min-width: 1401px) {
+    .playPause {
+        width: 75px;
+        height: 75px;
+    }
+
+    .forwardBackwards {
+        font-size: 28px;
+    }
+
+    .currentTime,
+    .duration {
+        font-size: 16px; 
+    }
+
+    .currentTime {
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+
+    .duration {
+        margin-right: 5px;
+        margin-left: 10px;
+    }
+
+    .playBack {
+        font-size: 16px;
+    }
+
+    .progressBar {
+        border-radius: 10px;
+        width: 945px;
+        height: 11px;
+    }
+
+    .progressBar::-webkit-slider-runnable-track {
+        width: 945px;
+        height: 11px;
+    }
+
+    .progressBar::-moz-range-track {
+        width: 945px;
+        height: 11px;
+    }
+}
