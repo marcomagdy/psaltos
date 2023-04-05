@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Psaltos;
 
 namespace psaltos.Controllers;
 
@@ -18,13 +19,19 @@ public class AssetController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Asset> Get()
+    public IEnumerable<Asset> Get([FromQuery] string? searchTerm)
     {
-        using (var connection = _dapperContext.GetConnection())
-        {
+         using (var connection = _dapperContext.GetConnection())
+         {
             var assets = connection.Query<Asset>("SELECT * FROM Assets");
-            return assets;
-        }
+            var assetsWithScore = assets.Select(asset => new { Asset = asset, Score = FuzzySearch.CalculateNeedlemanWunschScore(searchTerm, asset.EnglishName) })
+                                .Where(a => a.Score > 0)
+                                .OrderByDescending(a => a.Score)
+                                .Take(5)
+                                .Select(a => a.Asset);
+
+            return assetsWithScore;
+         }
     }
 
     [HttpPost(Name = "CreateAsset")]
